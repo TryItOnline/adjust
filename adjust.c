@@ -1,5 +1,6 @@
 // modified to accept files without trailing newlines
 // fixed direction bug
+// fixed step bug in op 17/19
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -319,9 +320,9 @@ void run(cell **code, int lines, int maxline)
 					int steps = 0;
 					if (acc & (1<<2))
 						RIGHT90(dir);
-					steps += (acc & (1<<3));
-					steps += (acc & (1<<4));
-					steps += (acc & (1<<7));
+					steps += (acc & (1<<3)) > 0;
+					steps += (acc & (1<<4)) > 0;
+					steps += (acc & (1<<7)) > 0;
 					movefwd(&codex, &codey, dir, steps);
 					break;
 				}
