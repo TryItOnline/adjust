@@ -1,4 +1,5 @@
 // modified to accept files without trailing newlines
+// fixed direction bug
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -150,8 +151,8 @@ cell bitsset[256] =
 static inline int right135(int dir) { return (dir+3)%8; }
 static inline int  right90(int dir) { return (dir+2)%8; }
 static inline int  right45(int dir) { return (dir+1)%8; }
-static inline int   left45(int dir) { return (dir-1)%8; }
-static inline int   left90(int dir) { return (dir-2)%8; }
+static inline int   left45(int dir) { return (dir+7)%8; }
+static inline int   left90(int dir) { return (dir+6)%8; }
 static inline void movefwd(int *x, int *y, int dir, int steps)
 {
 	if (dir == LEFT || dir == UP_LEFT || dir == DOWN_LEFT)
