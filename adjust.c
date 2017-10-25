@@ -3,6 +3,7 @@
 // fixed step bug in op 17/19
 
 #include <stdio.h>
+#include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -20,14 +21,14 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "Incorrect invocation\n");
+		fprintf(stderr, "Usage: %s filename\n",argv[0]);
 		return 1;
 	}
 
 	src = fopen(argv[1], "r");
 	if (src == NULL)
 	{
-		fprintf(stderr, "Unreadable file\n");
+		fprintf(stderr, "Error: Unable to open file %s: %s\n",argv[1],strerror(errno));
 		return 2;
 	}
 
